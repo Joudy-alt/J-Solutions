@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>تحدي التنمر التفاعلي</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: "Cairo", sans-serif;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;              
+      display: flex;                   
+      flex-direction: column;
+      background: linear-gradient(135deg, #d0f0ff, #f0fff0);
+      color: #222;
+      text-align: center;
+    }
+
+    header {
+      background: linear-gradient(90deg, #0a3d62, #38d9a9);
+      color: white;
+      padding: 25px;
+      font-size: 28px;
+      font-weight: bold;
+      border-bottom-left-radius: 20px;
+      border-bottom-right-radius: 20px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    section {
+      padding: 30px 15px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 25px;
+      flex: 1; 
+      box-sizing: border-box;
+    }
+
+    .card {
+      background: white;
+      padding: 25px;
+      border-radius: 20px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+      max-width: 700px;
+      width: calc(100% - 30px);
+      transition: transform 0.3s;
+      text-align: right;
+      box-sizing: border-box;
+    }
+
+    .card:hover { transform: translateY(-5px); }
+
+    h2 { color: #1b4332; margin-bottom: 15px; text-align: center; }
+
+    button {
+      background: linear-gradient(135deg, #74c0fc, #38d9a9);
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      font-size: 1.1rem;
+      border-radius: 25px;
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+      transition: transform 0.3s, box-shadow 0.3s;
+      margin-top: 10px;
+    }
+
+    button:hover { transform: translateY(-3px) scale(1.05); box-shadow: 0 10px 25px rgba(0,0,0,0.3); }
+
+    .content-box {
+      display: none;
+      background: #f0f8ff;
+      padding: 20px;
+      margin-top: 15px;
+      border-radius: 20px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      font-size: 1.1rem;
+      text-align: right;
+    }
+
+    .choice-btn {
+      background: linear-gradient(135deg,#ffa94d,#ffd8a8);
+      margin: 8px 0;
+      display: block;
+      width: 100%;
+      padding: 12px 18px;
+      border-radius: 12px;
+      font-size: 1rem;
+      text-align: right;
+      box-sizing: border-box;
+      border: none;
+      cursor: pointer;
+    }
+
+    .choice-btn:hover { transform: translateY(-2px) scale(1.02); }
+
+    .points { margin-top: 10px; font-weight: bold; color: #0a3d62; }
+
+    textarea { width: 100%; padding: 10px; border-radius: 10px; border: 1px solid #ccc; font-size: 1rem; resize: none; }
+
+    a{
+  display: inline-block;
+  margin: 25px auto;
+  padding: 12px 25px;
+  background:#0a3d62;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 25px;
+  transition: 0.3s;
+}
+a:hover {
+  transform: scale(1.05);
+  background: #5f33ff;
+}
+
+    footer {
+      background: #0a3d62;
+      color: white;
+      padding: 15px 0;
+      font-weight: bold;
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
+      text-align: center;
+      box-sizing: border-box;
+    }
+    @media screen and (max-width: 600px) {
+  header {
+    font-size: 22px;
+    padding: 20px;
+  }
+
+  nav a {
+    padding: 10px 15px;
+    font-size: 14px;
+  }
+
+  .card {
+    padding: 20px;
+    margin-bottom: 20px;
+    width: 90%;
+  }
+
+  p {
+    font-size: 16px;
+  }
+
+  .buttons {
+    flex-direction: column; 
+    gap: 15px;
+  }
+
+  .btn {
+    width: 100%;
+    padding: 12px 0;
+    font-size: 1rem;
+  }
+
+  .popup {
+    padding: 20px;
+  }
+
+  .popup h3 {
+    font-size: 1.3rem;
+  }
+
+  .close-btn {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+}
+  </style>
+</head>
+<body>
+
+<header>🌟 تحدي التفاعل ضد التنمر 🌈</header>
+
+<section>
+
+  <div class="card" id="scenario">
+    <h2>🎭 تحدي المواقف</h2>
+    <p>اختاري كيف تتصرفي في الموقف التالي:</p>
+    <p id="questionText"></p>
+    <div id="buttonsContainer"></div> 
+    <div class="content-box" id="resultBox" aria-live="polite"></div>
+
+    <div style="margin-top:12px;">
+      <button id="nextBtn" type="button" style="display:none;">السؤال التالي ➡️</button>
+      <button id="restartBtn" type="button" style="display:none; margin-left:8px;">إعادة اللعب 🔁</button>
+    </div>
+
+    <div class="points" id="scenarioPoints">نقاطك: 0</div>
+  </div>
+
+  <div class="card">
+    <h2>💪 تمرين الثقة بالنفس</h2>
+    <p>اكتبي شيئاً تحبينه في نفسك:</p>
+    <textarea id="selfText" rows="3" placeholder="اكتبي هنا..."></textarea><br>
+    <button id="selfBtn" type="button">أرني دعمي!</button>
+    <div class="content-box" id="selfBox" aria-live="polite"></div>
+  </div>
+
+  <div class="card">
+    <h2>🌈 اقتباس تحفيزي</h2>
+    <button id="quoteBtn" type="button">أرسل لي اقتباس اليوم</button>
+    <div class="content-box" id="quoteBox" aria-live="polite"></div>
+  </div>
+
+</section>
+
+<script>
+const quotes = [
+  "🌟 ابتسم، فأنت أقوى مما تظن!",
+  "💪 القوة الحقيقية هي في الصبر والثقة بالنفس.",
+  "🌈 كل يوم فرصة جديدة لتكون أفضل.",
+  "✨ تذكر: أنت تتحكم برد فعلك وليس الآخرين."
+];
+
+const scenarios = [
+  { question: "زميلك يضحك على ملابسك في المدرسة، ماذا تفعل؟", choices: [
+      { text: "ترد عليه بالمثل", points: 0, msg: "⚠️ الحذر! الرد بالمثل قد يزيد المشكلة." },
+      { text: "أحكي له بهدوء وأخبره كيف شعرت", points: 10, msg: "👏 ممتاز! التعامل بهدوء يعزز احترام الآخرين." },
+      { text: "تجاهله وأكمل يومك", points: 5, msg: "👍 جيد! أحياناً التجاهل يحمي شعورك." }
+  ]},
+  { question: "شخص يقلل من مجهودك في المدرسة، كيف تتصرف؟", choices: [
+      { text: "أثبت له بالعكس بعمل أفضل", points: 10, msg: "👏 ممتاز! اجتهادك يظهر قيمتك." },
+      { text: "أتجاهل كلامه", points: 5, msg: "👍 جيد! أحياناً التجاهل أفضل." },
+      { text: "أغضب وأتجادله", points: 0, msg: "⚠️ الحذر! الجدال قد يزيد التوتر." }
+  ]},
+  { question: "أحد الزملاء ينشر إشاعات عنك، ماذا تفعل؟", choices: [
+      { text: "أتجاهلها وأركز على نفسي", points: 5, msg: "👍 جيد! التركيز على نفسك أفضل." },
+      { text: "أواجه الشخص بهدوء", points: 10, msg: "👏 ممتاز! المواجهة الهادئة تحل المشكلة." },
+      { text: "أنتشر الإشاعات عنه", points: 0, msg: "⚠️ الحذر! الانتقام يزيد المشكلة." }
+  ]},
+  { question: "شخص يرفض مشاركتك في النشاط، كيف تتصرف؟", choices: [
+      { text: "أطلب المساعدة من مدرس", points: 10, msg: "👏 ممتاز! طلب الدعم طريقة صحيحة." },
+      { text: "أحاول أن أنفرد بالنشاط وحدي", points: 5, msg: "👍 جيد! العمل الفردي حل مؤقت." },
+      { text: "أغضب وأترك النشاط", points: 0, msg: "⚠️ الحذر! الغضب يضر بك." }
+  ]},
+  { question: "أحد الأصدقاء يقلل من نجاحك، ماذا تفعل؟", choices: [
+      { text: "أتجاهل كلامه", points: 5, msg: "👍 جيد! التجاهل يحمي شعورك." },
+      { text: "أخبره بهدوء عن شعوري", points: 10, msg: "👏 ممتاز! التعبير عن شعورك يعزز الاحترام." },
+      { text: "أغضب منه", points: 0, msg: "⚠️ الحذر! الغضب قد يزيد التوتر." }
+  ]},
+  { question: "زميلك يقطع كلامك أثناء الحديث، كيف تتصرف؟", choices: [
+      { text: "أصر على الحديث بهدوء", points: 10, msg: "👏 ممتاز! الحفاظ على هدوءك يعكس نضجك." },
+      { text: "أتجاهل الأمر", points: 5, msg: "👍 جيد! أحياناً التجاهل يقلل التصعيد." },
+      { text: "أغضب وأقاطع", points: 0, msg: "⚠️ الحذر! الغضب يزيد المشكلة." }
+  ]},
+  { question: "شخص يسخر من أفكارك، ماذا تفعل؟", choices: [
+      { text: "أشرح له وجهة نظرك بهدوء", points: 10, msg: "👏 ممتاز! النقاش الهادئ يحترم الجميع." },
+      { text: "أتجاهل السخرية", points: 5, msg: "👍 جيد! التجاهل يقلل التوتر." },
+      { text: "أرد بسخرية", points: 0, msg: "⚠️ الحذر! الرد بالسخرية يزيد التوتر." }
+  ]},
+  { question: "شخص يحاول أخذ عملك، كيف تتصرف؟", choices: [
+      { text: "أوضح له ملكيتي بهدوء", points: 10, msg: "👏 ممتاز! التعبير بهدوء يحل المشكلة." },
+      { text: "أتجاهل وأتركه", points: 5, msg: "👍 جيد! أحياناً التجاهل مناسب." },
+      { text: "أغضب وأقاطع", points: 0, msg: "⚠️ الحذر! الغضب يزيد المشكلة." }
+  ]},
+  { question: "أحد الزملاء يقلل من أفكارك في المشروع، ماذا تفعل؟", choices: [
+      { text: "أشارك أفكاري بثقة", points: 10, msg: "👏 ممتاز! الثقة بنفسك تحمي أفكارك." },
+      { text: "أتجاهل وأعمل وحدي", points: 5, msg: "👍 جيد! أحياناً العمل الفردي مفيد." },
+      { text: "أغضب وأرفض التعاون", points: 0, msg: "⚠️ الحذر! الغضب قد يضر بالمشروع." }
+  ]},
+  { question: "شخص يضحك على خطأك في الفصل، كيف تتصرف؟", choices: [
+      { text: "أصحح خطئي بهدوء وأتعلم", points: 10, msg: "👏 ممتاز! التعلم من الخطأ أفضل حل." },
+      { text: "أتجاهل وأستمر", points: 5, msg: "👍 جيد! التجاهل يقلل الإحراج." },
+      { text: "أغضب وأرد", points: 0, msg: "⚠️ الحذر! الغضب قد يزيد المشكلة." }
+  ]}
+];
+
+let currentQuestion = 0;
+let score = 0;
+let answered = false;
+
+const buttonsContainer = document.getElementById('buttonsContainer');
+const resultBox = document.getElementById('resultBox');
+const pointsBox = document.getElementById('scenarioPoints');
+const nextBtn = document.getElementById('nextBtn');
+const restartBtn = document.getElementById('restartBtn');
+
+document.getElementById('selfBtn').addEventListener('click', showSelfConfidence);
+document.getElementById('quoteBtn').addEventListener('click', showQuote);
+nextBtn.addEventListener('click', nextQuestion);
+restartBtn.addEventListener('click', resetGame);
+
+function showScenario() {
+  answered = false;
+  buttonsContainer.innerHTML = '';
+  resultBox.style.display = 'none';
+  nextBtn.style.display = 'none';
+  restartBtn.style.display = 'none';
+
+  if (currentQuestion >= scenarios.length) {
+    resultBox.style.display = 'block';
+    resultBox.innerHTML = "🎉 انتهت اللعبة! مجموع نقاطك: " + score;
+    document.getElementById('questionText').innerText = '';
+    pointsBox.innerHTML = "نقاطك: " + score;
+    restartBtn.style.display = 'inline-block';
+    return;
+  }
+
+  const q = scenarios[currentQuestion];
+  document.getElementById('questionText').innerText = q.question;
+
+  q.choices.forEach((choice, idx) => {
+    const btn = document.createElement('button');
+    btn.type = 'button'; 
+    btn.className = 'choice-btn';
+    btn.textContent = choice.text;
+    btn.addEventListener('click', () => handleChoice(choice));
+    buttonsContainer.appendChild(btn);
+  });
+
+  pointsBox.innerHTML = "نقاطك: " + score;
+}
+
+function handleChoice(choice) {
+  if (answered) return;
+  answered = true;
+  score += choice.points;
+  resultBox.innerHTML = choice.msg;
+  resultBox.style.display = 'block';
+
+  const btns = document.querySelectorAll('#buttonsContainer .choice-btn');
+  btns.forEach(b => b.disabled = true);
+
+  nextBtn.style.display = 'inline-block';
+  pointsBox.innerHTML = "نقاطك: " + score;
+}
+
+function nextQuestion() {
+  currentQuestion++;
+  showScenario();
+}
+
+function resetGame() {
+  currentQuestion = 0;
+  score = 0;
+  answered = false;
+  restartBtn.style.display = 'none';
+  showScenario();
+}
+
+showScenario();
+
+function showSelfConfidence(){
+  const text = document.getElementById('selfText').value.trim();
+  const box = document.getElementById('selfBox');
+
+  const messages = [
+    "✨ رائع! تذكري: ",
+    "💖 ممتاز! أنتِ مميزة ب: ",
+    "🌟 أحسنت! خصالك الجميلة: ",
+    "💪 استمري! صفاتك الرائعة: "
+  ];
+
+  if(text === "") {
+    box.innerHTML = "اكتبي شيئاً عن نفسك لتستقبلي الدعم!";
+  } else {
+    const randomMsg = messages[Math.floor(Math.random() * messages.length)];
+    box.innerHTML = randomMsg + text + " تجعل منك شخصاً فريداً!";
+  }
+
+  box.style.display = "block";
+}
+
+function showQuote(){
+  const box = document.getElementById('quoteBox');
+  const random = quotes[Math.floor(Math.random() * quotes.length)];
+  box.innerHTML = random;
+  box.style.display = "block";
+}
+</script>
+
+<a href="bullying.html">Back </a>
+
+<footer>2025 J-Solutions</footer>
+</body>
+</html>

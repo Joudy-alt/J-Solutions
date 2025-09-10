@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>الهجرة غير الشرعية</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap');
+
+    body {
+      font-family: 'Cairo', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #f5f5f5, #fdf6e3); 
+      color: #222;
+    }
+
+    header {
+      background: linear-gradient(90deg, #9c27b0, #6a1b9a);
+      color: #fff;
+      padding: 25px;
+      text-align: center;
+      font-size: 30px;
+      font-weight: bold;
+      border-bottom-left-radius: 20px;
+      border-bottom-right-radius: 20px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    nav {
+      background: #e4e407;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      padding: 14px 25px;
+      font-weight: bold;
+      border-radius: 8px;
+      transition: all 0.3s;
+    }
+
+    nav a:hover {
+      background: #c29fbd;
+      transform: scale(1.05);
+    }
+
+    section {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      animation: fadeIn 1s ease;
+      flex-direction: column;
+    }
+
+    .card {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+      max-width: 800px;
+      text-align: right;
+      margin-bottom: 30px;
+      animation: slideUp 1s ease;
+    }
+
+    h2 {
+      color: #1b4332;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+
+    p {
+      font-size: 18px;
+      line-height: 1.8;
+      margin: 10px 0;
+    }
+
+    em {
+      color: #bb62bb;
+      display: block;
+      margin-top: 5px;
+      font-style: normal;
+      font-weight: 500;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-top: 15px;
+    }
+
+    .btn {
+      background: linear-gradient(135deg, #e3fc74, #38d9a9);
+      color: #fff;
+      border: none;
+      padding: 15px 30px;
+      font-size: 1.1rem;
+      border-radius: 25px;
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+      transition: transform 0.3s, box-shadow 0.3s;
+      min-width: 180px;
+    }
+
+    .btn:hover {
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    }
+
+    .popup-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.4);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 900;
+    }
+
+    .popup {
+      background: #fff;
+      padding: 30px 40px;
+      border-radius: 20px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+      text-align: right;
+      max-width: 90%;
+      color: #333;
+      transform: scale(0.8);
+      transition: transform 0.4s ease, opacity 0.4s ease;
+    }
+
+    .popup.show {
+      transform: scale(1);
+      opacity: 1;
+    }
+
+    .popup h3 {
+      margin-top: 0;
+      color: #52620a;
+      font-size: 1.5rem;
+      text-align: center;
+    }
+
+    .popup p {
+      margin-top: 10px;
+      line-height: 1.7;
+    }
+
+    .close-btn {
+      margin-top: 20px;
+      background: linear-gradient(135deg, #deff4d, #ffa8e5);
+      color: #fff;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.3s, transform 0.3s;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .close-btn:hover {
+      background: linear-gradient(135deg, #dfff2b, #ffa8f1);
+      transform: translateY(-3px);
+    }
+
+    footer {
+      background: #620a5e;
+      color: white;
+      padding: 15px;
+      text-align: center;
+      font-size: 14px;
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
+      margin-top: 40px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(30px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    @media screen and (max-width: 600px) {
+      header {
+        font-size: 22px;
+        padding: 20px;
+      }
+      nav a {
+        padding: 10px 15px;
+        font-size: 14px;
+      }
+      .card {
+        padding: 20px;
+        margin-bottom: 20px;
+        width: 90%;
+      }
+      p {
+        font-size: 16px;
+      }
+      .buttons {
+        flex-direction: column;
+        gap: 15px;
+      }
+      .btn {
+        width: 100%;
+        padding: 12px 0;
+        font-size: 1rem;
+      }
+      .popup {
+        padding: 20px;
+      }
+      .popup h3 {
+        font-size: 1.3rem;
+      }
+      .close-btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+<header>
+  🌍 الهجرة غير الشرعية: المخاطر والحلول 🚢
+</header>
+
+<nav>
+  <a href="index.html">الرئيسية</a>
+  <a href="migration.html">الهجرة غير الشرعية</a>
+  <a href="migrationtip.html">الحل</a>
+  <a href="migrationmedia.html">فيديو توضيحي </a>
+</nav>
+
+<section>
+  <div class="card">
+    <h2>❓ ما هي الهجرة غير الشرعية؟</h2>
+    <p>
+      الهجرة غير الشرعية هي انتقال الأشخاص إلى دول أخرى بطريقة غير قانونية، بدون تصاريح رسمية أو وثائق قانونية.
+      <em>Illegal migration is moving to another country without legal permission or proper documents</em>
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>📝 أسباب الهجرة غير الشرعية</h2>
+    <p>
+      - البحث عن فرص عمل أفضل أو دخل أعلى.<br>
+      - الفقر وصعوبة المعيشة في البلد الأصلي.<br>
+      - النزاعات والحروب أو الاضطهاد.<br>
+      - نقص التعليم والخدمات الأساسية.<br>
+      - تأثير الأصدقاء أو شبكات الهجرة غير القانونية.
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>📌 مخاطر الهجرة غير الشرعية</h2>
+    <p>
+      - التعرض للاستغلال أو الاتجار بالبشر.<br>
+      - الغرق أو الحوادث أثناء الرحلة.<br>
+      - الاعتقال أو الترحيل.<br>
+      - فقدان الحقوق الاجتماعية والصحية.<br>
+      - تأثير نفسي على الفرد والعائلة.
+    </p>
+  </div>
+
+  <div class="card">
+    <h2>💡 كيفية التعامل والوقاية</h2>
+    <div class="buttons">
+      <button class="btn" onclick="showPopup('advice')">نصائح للوقاية</button>
+      <button class="btn" onclick="showPopup('positive')">فكر بإيجابية</button>
+    </div>
+  </div>
+</section>
+
+<div class="popup-overlay" id="advice-overlay">
+  <div class="popup">
+    <h3>نصائح للوقاية من الهجرة غير الشرعية</h3>
+    <p>
+      - الاعتماد على الطرق القانونية للهجرة.<br>
+      - البحث عن فرص تعليمية أو تدريبية محلية.<br>
+      - الاستفادة من برامج العمل الرسمية.<br>
+      - تجنب شبكات الهجرة غير القانونية.<br>
+      - التوعية بالمخاطر قبل اتخاذ أي قرار.
+    </p>
+    <button class="close-btn" onclick="closePopup('advice-overlay')">تمام</button>
+  </div>
+</div>
+
+<div class="popup-overlay" id="positive-overlay">
+  <div class="popup">
+    <h3>فكر بإيجابية</h3>
+    <p>
+      😊 ركز على تحسين حياتك في بلدك، تعلم مهارة جديدة، وابحث عن فرص محلية، فهذا يحقق لك حياة أفضل بدون مخاطر الهجرة غير الشرعية.
+    </p>
+    <button class="close-btn" onclick="closePopup('positive-overlay')">تمام</button>
+  </div>
+</div>
+
+<script>
+  function showPopup(type) {
+    if(type === 'advice') {
+      document.getElementById('advice-overlay').style.display = 'flex';
+      document.getElementById('positive-overlay').style.display = 'none';
+    } else if(type === 'positive') {
+      document.getElementById('positive-overlay').style.display = 'flex';
+      document.getElementById('advice-overlay').style.display = 'none';
+    }
+  }
+
+  function closePopup(id) {
+    document.getElementById(id).style.display = 'none';
+  }
+</script>
+
+<footer>
+2025 J-Solutions
+</footer>
+
+</body>
+</html>

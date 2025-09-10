@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <title>اعرف طريقك - حل الزحمة</title>
+  <style>
+    body {
+      font-family: "Cairo", sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #f8e1c4, #f0f0f0);
+      color: #222;
+      text-align: center;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow-x: hidden;
+    }
+
+    header {
+      width: 100%;
+      background: linear-gradient(90deg, #ff6f00, #d00000);
+      color: white;
+      padding: 20px;
+      font-size: 24px;
+      font-weight: bold;
+      border-bottom-left-radius: 20px;
+      border-bottom-right-radius: 20px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+      box-sizing: border-box;
+    }
+
+    form {
+      margin: 40px auto 20px;
+      padding: 30px;
+      background: white;
+      border-radius: 20px;
+      max-width: 500px;
+      width: 90%;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      text-align: center;
+      box-sizing: border-box;
+    }
+
+    label {
+      display: block;
+      margin: 15px 0 8px;
+      font-weight: bold;
+      color: #d00000;
+      font-size: 18px;
+    }
+
+    input {
+      width: 100%; 
+      padding: 12px;
+      border-radius: 10px;
+      border: 1px solid #ff6f00;
+      margin-bottom: 20px;
+      font-size: 16px;
+      outline: none;
+      transition: 0.3s;
+      text-align: center;
+      box-sizing: border-box;
+    }
+
+    input:focus {
+      border-color: #d00000;
+      box-shadow: 0 0 8px rgba(208,0,0,0.4);
+    }
+
+    button {
+      padding: 12px 30px;
+      background: linear-gradient(135deg,#ff922b,#d00000);
+      color: white;
+      border: none;
+      border-radius: 25px;
+      font-size: 18px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background: linear-gradient(135deg,#d00000,#ff922b);
+      transform: scale(1.05);
+    }
+
+    a {
+      display: inline-block;
+      margin: 20px 0 40px;
+      padding: 12px 25px;
+      background: linear-gradient(135deg,#621c0a,#ff5233);
+      color: #fff; 
+      text-decoration: none;
+      border-radius: 25px;
+      transition: 0.3s;
+      max-width: 90%;
+      box-sizing: border-box;
+    }
+    a:hover { 
+      background: linear-gradient(135deg,#ff5233,#621c0a); 
+      transform: scale(1.05);
+    }
+
+    footer {
+      width: 100%;
+      background: #222;
+      color: white;
+      padding: 15px;
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
+      text-align: center;
+      box-sizing: border-box;
+      margin-top: auto; 
+    }
+    @media screen and (max-width: 600px) {
+  header {
+    font-size: 22px;
+    padding: 20px;
+  }
+
+  nav a {
+    padding: 10px 15px;
+    font-size: 14px;
+  }
+
+  .card {
+    padding: 20px;
+    margin-bottom: 20px;
+    width: 90%;
+  }
+
+  p {
+    font-size: 16px;
+  }
+
+  .buttons {
+    flex-direction: column; 
+    gap: 15px;
+  }
+
+  .btn {
+    width: 100%;
+    padding: 12px 0;
+    font-size: 1rem;
+  }
+
+  .popup {
+    padding: 20px;
+  }
+
+  .popup h3 {
+    font-size: 1.3rem;
+  }
+
+  .close-btn {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+}
+  </style>
+</head>
+<body>
+
+<header>
+  🚦 اعرف طريقك - حل الزحمة
+</header>
+
+<form id="directionForm">
+  <label for="start">📍 مكان البداية:</label>
+  <input type="text" id="start" placeholder="مثال: ميامي">
+
+  <label for="end">🏁 الوجهة:</label>
+  <input type="text" id="end" placeholder="مثال: المنتزه">
+
+  <button type="submit">اعرض الطريق 🚗</button>
+</form>
+
+<a href="crowd.html">Back</a>
+
+<footer>
+  2025 J-Solutions
+</footer>
+
+<script>
+  document.getElementById("directionForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+    let start = document.getElementById("start").value;
+    let end = document.getElementById("end").value;
+    if(start && end){
+      let url = "https://www.google.com/maps/dir/" + encodeURIComponent(start) + "/" + encodeURIComponent(end);
+      window.open(url, "_blank"); 
+    } else {
+      alert("من فضلك اكتب مكان البداية والوجهة!");
+    }
+  });
+</script>
+
+</body>
+</html>

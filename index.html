@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>J-Solutions</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #f8f8f8, #e0e0e0);
+      color: #222;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+    a:hover {
+      color: #000;
+    }
+
+    header {
+      background: linear-gradient(90deg, #111, #333);
+      color: #fff;
+      text-align: center;
+      padding: 50px 20px;
+      border-bottom-left-radius: 30px;
+      border-bottom-right-radius: 30px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 3rem;
+      letter-spacing: 2px;
+      font-weight: 700;
+    }
+
+    header p {
+      margin-top: 10px;
+      font-size: 1.2rem;
+      color: #ccc;
+      font-weight: 400;
+    }
+
+    .cards-container {
+      display: flex;
+      flex-wrap: wrap; 
+      justify-content: center; 
+      gap: 30px;
+      padding: 60px 20px;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 25px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+      padding: 30px 25px;
+      width: 250px; 
+      transition: transform 0.5s ease, box-shadow 0.5s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .card:hover {
+      transform: translateY(-12px) scale(1.07);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+    }
+    .card h3 {
+      margin-top: 0;
+      font-size: 1.6rem;
+      color: #111;
+      margin-bottom: 12px;
+      font-weight: 600;
+    }
+    .card p {
+      color: #555;
+      line-height: 1.7;
+      font-weight: 400;
+    }
+
+    .divider {
+      height: 4px;
+      background: linear-gradient(to right, #bbb, #888, #bbb);
+      margin: 60px 0;
+      width: 70%;
+      margin-left: auto;
+      margin-right: auto;
+      border-radius: 10px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px;
+      background: linear-gradient(90deg, #111, #333);
+      color: #fff;
+      font-size: 1rem;
+      letter-spacing: 1px;
+      box-shadow: 0 -6px 20px rgba(0,0,0,0.2);
+      border-top-left-radius: 25px;
+      border-top-right-radius: 25px;
+    }
+
+    @media screen and (max-width: 600px) {
+      header {
+        font-size: 22px;
+        padding: 20px;
+      }
+      nav a {
+        padding: 10px 15px;
+        font-size: 14px;
+      }
+      .card {
+        padding: 20px;
+        margin-bottom: 20px;
+        width: 90%;
+      }
+      p {
+        font-size: 16px;
+      }
+      .buttons {
+        flex-direction: column; 
+        gap: 15px;
+      }
+      .btn {
+        width: 100%;
+        padding: 12px 0;
+        font-size: 1rem;
+      }
+      .popup {
+        padding: 20px;
+      }
+      .popup h3 {
+        font-size: 1.3rem;
+      }
+      .close-btn {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>J-Solutions</h1>
+    <p>No problem has no solution</p>
+  </header>
+
+  <div class="cards-container">
+    <a href="migration.html" class="card">
+      <h3>هجرة غير شرعية</h3>
+      <p>خطورة الهجرة غير الشرعية وبدائلها المفيدة.</p>
+    </a>
+    <a href="bullying.html" class="card">
+      <h3>تنمر</h3>
+      <p>كيف نحمي أنفسنا ونتعامل مع التنمر.</p>
+    </a>
+    <a href="crowd.html" class="card">
+      <h3>زحمة</h3>
+      <p>حلول عملية لتقليل الزحمة وتحسين المرور.</p>
+    </a>
+  </div>
+
+  <div class="divider"></div>
+
+  <footer>
+    2025 J-Solutions
+  </footer>
+
+</body>
+</html>
